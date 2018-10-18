@@ -1,88 +1,59 @@
 package ru.lebedev.se;
 
+import java.util.Arrays;
+
 /**
  * @author Анатолий Лебедев
- * @version 1.0.0
+ * @version 1.0.1
  */
 
-public class App 
-{
+public class App {
     public static void main(String[] args) {
-//        // 2. Объявляем и инициализируем переменные известных типов
-//        byte b = 125;
-//        short s = 32000;
-//        int i = 2514215;
-//        long l = 635466546L;
-//        float f = 120.0F;
-//        double d = 21545.234D;
-//        boolean logic = true;
-//        char ch = 'a';
-//
-//        // Проверяем calc
-//        System.out.println(calc(1, 2, 3, 4));
-//
-//        // Проверяем diapazon
-//        System.out.println(diapazon(5, 3));
-//        System.out.println(diapazon(5, 12));
-//        System.out.println(diapazon(5, 22));
-//
-//        // Проверяем plus_minus
-//        plus_minus(23);
-//        plus_minus(-40);
-//
-//        // Проверяем Negative
-//        System.out.println(negative(-15));
-//        System.out.println(negative(20));
-//
-//        // Проверяем privet
-//        privet("Васисуалий");
-//
-//        // Проверяем visokosny
-//        visokosny(1980);
-//        visokosny(1900);
-//        visokosny(2000);
-//        visokosny(1975);
+
+        // 1. Проверяем инвертирование массива
+        int[] arr = {1, 0, 1, 1, 1, 0, 0, 1, 1, 1};
+        System.out.println(Arrays.toString(arr));
+        invertArray(arr);
+        System.out.println(Arrays.toString(arr));
+
+        // 2. Проверяем работу по созданию и заполнению массива размером 8 с помощью цикла
+        arr8();
+
+        // 3.
+        arr6to2();
     }
+    // ---------------------------------------------------------------------------------------------------------
 
+    // 1. Инвертируем массив
+    public static void invertArray(int[] arr) {
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = Math.abs(arr[i] - 1);
+        }
+    }
+    // ---------------------------------------------------------------------------------------------------------
 
-//    // 3. Вычисляем значение a * (b + (c / d))
-//    public static double calc(double a, double b, double c, double d) {
-//        return (a * (b + (c / d)));
-//    }
-//
-//    // 4. От 10 до 20
-//    public static boolean diapazon(double a, double b) {
-//        if ((a + b) >= 10 && (a + b) <= 20) {
-//            return true;
-//        } else return false;
-//    }
-//
-//    // 5. Положительное или отрицательное
-//    public static void plus_minus(int a) {
-//        if (a >= 0) {
-//            System.out.println(a + " - число положительное");
-//        } else System.out.println(a + " - число отрицательное");
-//    }
-//
-//    // 6. Если отрицательное, то true
-//    public static boolean negative(int a) {
-//        if (a < 0) {
-//            return true;
-//        } else return false;
-//    }
-//
-//    // 7. Возвращаем имя с приветом :)
-//    public static void privet(String str) {
-//        System.out.println("Привет, " + str);
-//    }
-//
-//    // 8. Определяем високосный год
-//    public static void visokosny(int data) {
-//        if ((data % 4 == 0) && (data % 100 != 0) || (data % 400 == 0)) {
-//            System.out.println(data + " - год високосный");
-//        } else {
-//            System.out.println(data + " - год не високосный");
-//        }
-//    }
+    // 2. Создаем и заполняем массив размером 8 с помощью цикла
+    public static void arr8() {
+        int[] arr = new int[8];
+        int b = 0;
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = b;
+            b = b + 3;
+        }
+        System.out.println(Arrays.toString(arr)); // Проверяем работу
+    }
+    // ---------------------------------------------------------------------------------------------------------
+
+    // 3. Цифры в массиве, меньшие 6 умножить на 2
+    public static void arr6to2() {
+        int[] arr = {1, 5, 3, 2, 11, 4, 5, 2, 4, 8, 9, 1};
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] <= 6) {
+                arr[i] = arr[i] * 2;
+            }
+        }
+        System.out.println(Arrays.toString(arr)); // Проверяем работу
+
+    }
 
 }
