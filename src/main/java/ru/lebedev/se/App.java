@@ -73,7 +73,7 @@ public class App
 
     // 7. Возвращаем имя с приветом :)
     public static void privet(String str) {
-        System.out.println("Привет, " + str);
+        System.out.println("Привет, " + str + "!");
     }
 
     // 8. Определяем високосный год
