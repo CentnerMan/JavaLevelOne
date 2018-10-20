@@ -17,13 +17,13 @@ public class App {
         System.out.println(Arrays.toString(arr));
 
         // 2. Проверяем работу по созданию и заполнению массива размером 8 с помощью цикла
-        arr8();
+        fillArray8();
 
         // 3.
-        arr6to2();
+        changeArray();
 
         // 4.
-        diagonal();
+        fillDiagonal();
 
         // 5.
         minmax();
@@ -54,7 +54,7 @@ public class App {
     // ---------------------------------------------------------------------------------------------------------
 
     // 2. Создаем и заполняем массив размером 8 с помощью цикла
-    public static void arr8() {
+    public static void fillArray8() {
         int[] arr = new int[8];
         int b = 0;
         for (int i = 0; i < arr.length; i++) {
@@ -66,7 +66,7 @@ public class App {
     // ---------------------------------------------------------------------------------------------------------
 
     // 3. Цифры в массиве, меньшие 6 умножить на 2
-    public static void arr6to2() {
+    public static void changeArray() {
         int[] arr = {1, 5, 3, 2, 11, 4, 5, 2, 4, 8, 9, 1};
         for (int i = 0; i < arr.length; i++) {
             if (arr[i] <= 6) {
@@ -78,7 +78,7 @@ public class App {
     // ---------------------------------------------------------------------------------------------------------
 
     // 4. Двумерный массив
-    public static void diagonal() {
+    public static void fillDiagonal() {
         int[][] arr = new int[4][4]; // Создаем двумерный массив 5 на 5
 
         for (int i = 0; i < arr.length; i++) {
