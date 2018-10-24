@@ -7,7 +7,7 @@ import java.util.Arrays;
  * @version 1.0.1
  */
 
-public class App {
+public class lesson2 {
     public static void main(String[] args) {
 
         // 1. Проверяем инвертирование массива
