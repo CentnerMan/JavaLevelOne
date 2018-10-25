@@ -5,7 +5,7 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
 /**
- * Unit test for simple lesson2.
+ * Unit test for simple SecondStep.
  */
 public class AppTest 
 {

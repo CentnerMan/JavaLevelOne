@@ -7,7 +7,7 @@ import java.util.Arrays;
  * @version 1.0.1
  */
 
-public class lesson2 {
+public class SecondStep {
     public static void main(String[] args) {
 
         // 1. Проверяем инвертирование массива
