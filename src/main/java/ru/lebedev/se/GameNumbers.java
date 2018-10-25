@@ -4,10 +4,10 @@ import java.util.Scanner;
 
 /**
  * @author Анатолий Лебедев
- * @version 1.0.2
+ * @version 1.0.3
  */
 
-public class gameNumbers {
+public class GameNumbers {
     private static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
