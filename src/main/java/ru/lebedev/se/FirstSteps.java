@@ -5,7 +5,7 @@ package ru.lebedev.se;
  * @version 1.0.0
  */
 
-public class lesson1
+public class FirstSteps
 {
     public static void main(String[] args) {
         // 2. Объявляем и инициализируем переменные известных типов
