@@ -1,7 +1,6 @@
 package ru.lebedev.se.chat.server.model;
 
-import java.util.Objects;
-import java.util.UUID;
+import java.util.*;
 
 public final class Session {
     public long timestamp = System.currentTimeMillis();
