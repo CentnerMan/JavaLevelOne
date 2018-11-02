@@ -14,6 +14,10 @@ public interface UserService {
 
     void createUser(String login, String password);
 
+    int getCountUser();
+
+    void removeAll();
+
     boolean isLoginExists(String login);
 
     void removeUser(String login);
