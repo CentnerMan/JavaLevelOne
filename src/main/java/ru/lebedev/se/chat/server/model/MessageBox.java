@@ -1,4 +1,6 @@
 package ru.lebedev.se.chat.server.model;
 
-public class MessageBox {
+import java.util.ArrayList;
+
+public final class MessageBox extends ArrayList<Message> {
 }
