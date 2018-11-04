@@ -10,7 +10,6 @@ import ru.lebedev.se.chat.server.model.User;
 
 import javax.jws.WebMethod;
 import javax.jws.WebService;
-import javax.jws.soap.SOAPBinding;
 import java.util.*;
 
 @WebService(endpointInterface = "ru.lebedev.se.chat.server.api.ChatService")
@@ -70,7 +69,6 @@ public final class ChatServiceBean implements ChatService {
     public void sendBroadcast(final Session session, final String message) {
         final User user = sessionService.getUser(session);
         messageService.sendBroadCast(user.login, message);
-
     }
 
     @Override
@@ -86,6 +84,5 @@ public final class ChatServiceBean implements ChatService {
     public void clearMessages(Session session) {
         final User user = sessionService.getUser(session);
         messageService.cleanMessage(user.login);
-
     }
 }
