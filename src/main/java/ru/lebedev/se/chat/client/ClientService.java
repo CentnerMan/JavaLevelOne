@@ -80,8 +80,6 @@ public class ClientService {
                 case CMD_BROADCAST:
                     broadcast();
                     break;
-
-
             }
             System.out.println();
         }
