@@ -25,6 +25,8 @@ public class ClientService {
 
     private static final String CMD_BROADCAST = "broadcast";
 
+    private static final String CMD_HELP = "help";
+
     private static final String LOCAL_PART = "ChatServiceBeanService";
 
     private static final String LOCAL_NAMESPACE = "http://service.server.chat.se.lebedev.ru/";
@@ -80,6 +82,10 @@ public class ClientService {
                 case CMD_BROADCAST:
                     broadcast();
                     break;
+
+                case CMD_HELP:
+                    help();
+                    break;
             }
             System.out.println();
         }
@@ -124,5 +130,18 @@ public class ClientService {
         System.out.println("ENTER MESSAGE: ");
         final String message = scanner.nextLine();
         chatService.sendBroadcast(session, message);
+    }
+
+    private void help(){
+        System.out.println("** COMMAND HELP **");
+        System.out.println("login (login)");
+        System.out.println("logout (logout)");
+        System.out.println("users (list of users)");
+        System.out.println("send (send a message to another user)");
+        System.out.println("broadcast (send message to all users)");
+        System.out.println("read (read your messages)");
+        System.out.println("exit (exit from chat)");
+        System.out.println("help (this text)");
+        System.out.println("------------------");
     }
 }
