@@ -1,6 +1,7 @@
 package ru.lebedev.se.chat.client;
 
 import ru.lebedev.se.chat.server.api.ChatService;
+import ru.lebedev.se.chat.server.model.Contact;
 import ru.lebedev.se.chat.server.model.Message;
 import ru.lebedev.se.chat.server.model.Session;
 
@@ -22,6 +23,14 @@ public class ClientService {
     private static final String CMD_SEND = "send";
 
     private static final String CMD_USERS = "users";
+
+    private static final String CMD_CONTACTS = "contacts";
+
+    private static final String CMD_CONTACT_CREATE = "contact-create";
+
+    private static final String CMD_CONTACT_REMOVE = "contact-remove";
+
+    private static final String CMD_CONTACTS_REMOVE = "contacts-remove";
 
     private static final String CMD_BROADCAST = "broadcast";
 
@@ -75,6 +84,22 @@ public class ClientService {
                     send();
                     break;
 
+                case CMD_CONTACTS:
+                    contacts();
+                    break;
+
+                case CMD_CONTACT_CREATE:
+                    contactCreate();
+                    break;
+
+                case CMD_CONTACT_REMOVE:
+                    contactRemove();
+                    break;
+
+                case CMD_CONTACTS_REMOVE:
+                    contactsRemove();
+                    break;
+
                 case CMD_USERS:
                     users();
                     break;
@@ -89,6 +114,35 @@ public class ClientService {
             }
             System.out.println();
         }
+    }
+
+    private void contactCreate() {
+        if (session==null) return;
+        System.out.println("ENTER LOGIN: ");
+        final String login = scanner.nextLine();
+        chatService.createContact(session, login);
+    }
+
+    private void contactRemove() {
+        if (session==null) return;
+        System.out.println("ENTER LOGIN: ");
+        final String login = scanner.nextLine();
+        chatService.removeContact(session, login);
+    }
+
+    private void contactsRemove() {
+        if (session==null) return;
+        chatService.removeContacts(session);
+    }
+
+    private void contacts() {
+        if (session==null) return;
+        final Set<Contact> contacts = chatService.getContacts(session);
+        for (final Contact contact: contacts){
+            if (contact == null) continue;
+            System.out.println(contact.target);
+        }
+
     }
 
     private void login() {
@@ -132,7 +186,7 @@ public class ClientService {
         chatService.sendBroadcast(session, message);
     }
 
-    private void help(){
+    private void help() {
         System.out.println("** COMMAND HELP **");
         System.out.println("login (login)");
         System.out.println("logout (logout)");
