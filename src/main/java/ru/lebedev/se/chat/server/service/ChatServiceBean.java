@@ -1,9 +1,11 @@
 package ru.lebedev.se.chat.server.service;
 
 import ru.lebedev.se.chat.server.api.ChatService;
+import ru.lebedev.se.chat.server.api.ContactService;
 import ru.lebedev.se.chat.server.api.MessageService;
 import ru.lebedev.se.chat.server.api.SessionService;
 import ru.lebedev.se.chat.server.api.UserService;
+import ru.lebedev.se.chat.server.model.Contact;
 import ru.lebedev.se.chat.server.model.Message;
 import ru.lebedev.se.chat.server.model.Session;
 import ru.lebedev.se.chat.server.model.User;
@@ -84,5 +86,24 @@ public final class ChatServiceBean implements ChatService {
     public void clearMessages(Session session) {
         final User user = sessionService.getUser(session);
         messageService.cleanMessage(user.login);
+    }
+
+    @Override
+    public void removeContacts(Session session) {
+
+    }
+
+    @Override
+    public void createContact(Session session, String login) {
+    }
+
+    @Override
+    public void removeContact(Session session, String login) {
+
+    }
+
+    @Override
+    public Set<Contact> getContacts(Session session) {
+        return null;
     }
 }
