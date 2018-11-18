@@ -1,4 +1,7 @@
 package ru.lebedev.se.chat.server.model;
 
-public class ContactBox {
+import java.util.LinkedHashSet;
+
+public final class ContactBox extends LinkedHashSet<Contact> {
+
 }
