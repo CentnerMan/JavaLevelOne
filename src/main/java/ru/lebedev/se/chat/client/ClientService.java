@@ -1,5 +1,6 @@
 package ru.lebedev.se.chat.client;
 
+import ru.lebedev.se.chat.client.command.*;
 import ru.lebedev.se.chat.server.api.ChatService;
 import ru.lebedev.se.chat.server.model.Contact;
 import ru.lebedev.se.chat.server.model.Message;
@@ -34,13 +35,15 @@ public class ClientService {
 
     private static final String CMD_BROADCAST = "broadcast";
 
-    private static final String CMD_HELP = "help";
+//    private static final String CMD_HELP = "help";
 
     private static final String LOCAL_PART = "ChatServiceBeanService";
 
     private static final String LOCAL_NAMESPACE = "http://service.server.chat.se.lebedev.ru/";
 
     private static final String WSDL = "http://localhost:8080/ChatService?wsdl";
+
+    private final Map<String, AbstractClientCommand> commands = new HashMap<>();
 
     private final URL url;
 
@@ -60,6 +63,18 @@ public class ClientService {
         service = Service.create(url, qname);
         chatService = service.getPort(ChatService.class);
         scanner = new Scanner(System.in);
+
+        commands.put(CMD_LOGIN, new ClientCommandLogin(chatService, session, scanner));
+        commands.put(CMD_LOGOUT, new ClientCommandLogout(chatService, session, scanner));
+        commands.put(CMD_SEND, new ClientCommandSend(chatService, session, scanner));
+        commands.put(CMD_READ, new ClientCommandRead(chatService, session, scanner));
+        commands.put(CMD_CONTACTS, new ClientCommandContacts(chatService, session, scanner));
+        commands.put(CMD_CONTACT_CREATE, new ClientCommandContactCreate(chatService, session, scanner));
+        commands.put(CMD_CONTACT_REMOVE, new ClientCommandContactRemove(chatService, session, scanner));
+        commands.put(CMD_CONTACTS_REMOVE, new ClientCommandContactsRemove(chatService, session, scanner));
+        commands.put(CMD_USERS, new ClientCommandUsers(chatService, session, scanner));
+        commands.put(CMD_BROADCAST, new ClientCommandBroadcact(chatService, session, scanner));
+
     }
 
     public void run() {
@@ -67,135 +82,26 @@ public class ClientService {
         while (!CMD_EXIT.equals(cmd)) {
             System.out.println("ENTER CMD: ");
             cmd = scanner.nextLine();
-            switch (cmd) {
-                case CMD_LOGIN:
-                    login();
-                    break;
-
-                case CMD_LOGOUT:
-                    logout();
-                    break;
-
-                case CMD_READ:
-                    read();
-                    break;
-
-                case CMD_SEND:
-                    send();
-                    break;
-
-                case CMD_CONTACTS:
-                    contacts();
-                    break;
-
-                case CMD_CONTACT_CREATE:
-                    contactCreate();
-                    break;
-
-                case CMD_CONTACT_REMOVE:
-                    contactRemove();
-                    break;
-
-                case CMD_CONTACTS_REMOVE:
-                    contactsRemove();
-                    break;
-
-                case CMD_USERS:
-                    users();
-                    break;
-
-                case CMD_BROADCAST:
-                    broadcast();
-                    break;
-
-                case CMD_HELP:
-                    help();
-                    break;
-            }
+            final Command command = commands.get(cmd);
+            if (command != null) command.execute();
             System.out.println();
         }
     }
 
-    private void contactCreate() {
-        if (session==null) return;
-        System.out.println("ENTER LOGIN: ");
-        final String login = scanner.nextLine();
-        chatService.createContact(session, login);
-    }
+//    private void broadcast() {
+//        new ClientCommandBroadcact(chatService, session, scanner).execute();
+//    }
 
-    private void contactRemove() {
-        if (session==null) return;
-        System.out.println("ENTER LOGIN: ");
-        final String login = scanner.nextLine();
-        chatService.removeContact(session, login);
-    }
-
-    private void contactsRemove() {
-        if (session==null) return;
-        chatService.removeContacts(session);
-    }
-
-    private void contacts() {
-        if (session==null) return;
-        final Set<Contact> contacts = chatService.getContacts(session);
-        for (final Contact contact: contacts){
-            if (contact == null) continue;
-            System.out.println(contact.target);
-        }
-
-    }
-
-    private void login() {
-        System.out.println("ENTER LOGIN: ");
-        final String login = scanner.nextLine();
-        System.out.println("ENTER PASSWORD: ");
-        final String password = scanner.nextLine();
-        session = chatService.signIn(login, password);
-        final String msg = session != null ? "OK" : "ERROR";
-        System.out.println("AUTH: " + msg);
-    }
-
-    private void logout() {
-        chatService.signOut(session);
-    }
-
-    private void send() {
-        System.out.println("ENTER LOGIN: ");
-        final String login = scanner.nextLine();
-        System.out.println("ENTER MESSAGE: ");
-        final String message = scanner.nextLine();
-        chatService.sendMessage(session, login, message);
-    }
-
-    private void read() {
-        final List<Message> messages = chatService.getMessages(session);
-        for (final Message message : messages) {
-            System.out.println("** INCOME MESSAGE **");
-            System.out.println("FROM: " + message.source);
-            System.out.println("TEXT: " + message.text);
-        }
-    }
-
-    private void users() {
-        System.out.println(chatService.getListLogin());
-    }
-
-    private void broadcast() {
-        System.out.println("ENTER MESSAGE: ");
-        final String message = scanner.nextLine();
-        chatService.sendBroadcast(session, message);
-    }
-
-    private void help() {
-        System.out.println("** COMMAND HELP **");
-        System.out.println("login (login)");
-        System.out.println("logout (logout)");
-        System.out.println("users (list of users)");
-        System.out.println("send (send a message to another user)");
-        System.out.println("broadcast (send message to all users)");
-        System.out.println("read (read your messages)");
-        System.out.println("exit (exit from chat)");
-        System.out.println("help (this text)");
-        System.out.println("------------------");
-    }
+//    private void help() {
+//        System.out.println("** COMMAND HELP **");
+//        System.out.println("login (login)");
+//        System.out.println("logout (logout)");
+//        System.out.println("users (list of users)");
+//        System.out.println("send (send a message to another user)");
+//        System.out.println("broadcast (send message to all users)");
+//        System.out.println("read (read your messages)");
+//        System.out.println("exit (exit from chat)");
+//        System.out.println("help (this text)");
+//        System.out.println("------------------");
+//    }
 }

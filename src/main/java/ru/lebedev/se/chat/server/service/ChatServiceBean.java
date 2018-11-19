@@ -19,6 +19,8 @@ public final class ChatServiceBean implements ChatService {
 
     private final UserService userService = new UserServiceBean();
 
+    private final ContactService contactService = new ContactServiceBean();
+
     private final MessageService messageService = new MessageServiceBean(userService);
 
     private final SessionService sessionService = new SessionServiceBean(userService);
@@ -89,16 +91,16 @@ public final class ChatServiceBean implements ChatService {
     }
 
     @Override
-    public void removeContacts(Session session) {
-
-    }
-
-    @Override
     public void createContact(Session session, String login) {
     }
 
     @Override
     public void removeContact(Session session, String login) {
+
+    }
+
+    @Override
+    public void removeContacts(Session session) {
 
     }
 
