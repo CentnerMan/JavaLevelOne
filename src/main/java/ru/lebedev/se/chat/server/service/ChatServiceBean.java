@@ -5,10 +5,7 @@ import ru.lebedev.se.chat.server.api.ContactService;
 import ru.lebedev.se.chat.server.api.MessageService;
 import ru.lebedev.se.chat.server.api.SessionService;
 import ru.lebedev.se.chat.server.api.UserService;
-import ru.lebedev.se.chat.server.model.Contact;
-import ru.lebedev.se.chat.server.model.Message;
-import ru.lebedev.se.chat.server.model.Session;
-import ru.lebedev.se.chat.server.model.User;
+import ru.lebedev.se.chat.server.model.*;
 
 import javax.jws.WebMethod;
 import javax.jws.WebService;
@@ -92,20 +89,27 @@ public final class ChatServiceBean implements ChatService {
 
     @Override
     public void createContact(Session session, String login) {
+        final User user = sessionService.getUser(session);
+        final User target = userService.getUser(login);
+        contactService.create(user.login, target.login);
     }
 
     @Override
     public void removeContact(Session session, String login) {
-
+        final User user = sessionService.getUser(session);
+        final User target = userService.getUser(login);
+        contactService.remove(user.login, target.login);
     }
 
     @Override
     public void removeContacts(Session session) {
-
+        final User user = sessionService.getUser(session);
+        contactService.removeAll(user.login);
     }
 
     @Override
     public Set<Contact> getContacts(Session session) {
-        return null;
+        final User user = sessionService.getUser(session);
+        return contactService.contacts(user.login);
     }
 }

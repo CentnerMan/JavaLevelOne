@@ -35,7 +35,7 @@ public class ClientService {
 
     private static final String CMD_BROADCAST = "broadcast";
 
-//    private static final String CMD_HELP = "help";
+    private static final String CMD_HELP = "help";
 
     private static final String LOCAL_PART = "ChatServiceBeanService";
 
@@ -74,7 +74,7 @@ public class ClientService {
         commands.put(CMD_CONTACTS_REMOVE, new ClientCommandContactsRemove(chatService, session, scanner));
         commands.put(CMD_USERS, new ClientCommandUsers(chatService, session, scanner));
         commands.put(CMD_BROADCAST, new ClientCommandBroadcact(chatService, session, scanner));
-
+        commands.put(CMD_HELP, new ClientCommandHelp(chatService, session, scanner));
     }
 
     public void run() {
@@ -92,16 +92,4 @@ public class ClientService {
 //        new ClientCommandBroadcact(chatService, session, scanner).execute();
 //    }
 
-//    private void help() {
-//        System.out.println("** COMMAND HELP **");
-//        System.out.println("login (login)");
-//        System.out.println("logout (logout)");
-//        System.out.println("users (list of users)");
-//        System.out.println("send (send a message to another user)");
-//        System.out.println("broadcast (send message to all users)");
-//        System.out.println("read (read your messages)");
-//        System.out.println("exit (exit from chat)");
-//        System.out.println("help (this text)");
-//        System.out.println("------------------");
-//    }
 }

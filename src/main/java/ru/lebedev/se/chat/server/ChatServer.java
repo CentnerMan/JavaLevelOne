@@ -11,6 +11,7 @@ public class ChatServer {
         final ChatService service = new ChatServiceBean();
         service.register("admin", "admin");
         service.register("test", "test");
+        service.register("user", "user");
         Endpoint.publish("http://localhost:8080/ChatService?wsdl",service);
     }
 }
