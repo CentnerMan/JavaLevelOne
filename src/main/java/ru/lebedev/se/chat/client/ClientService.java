@@ -2,8 +2,6 @@ package ru.lebedev.se.chat.client;
 
 import ru.lebedev.se.chat.client.command.*;
 import ru.lebedev.se.chat.server.api.ChatService;
-import ru.lebedev.se.chat.server.model.Contact;
-import ru.lebedev.se.chat.server.model.Message;
 import ru.lebedev.se.chat.server.model.Session;
 
 import javax.xml.namespace.QName;
@@ -87,9 +85,4 @@ public class ClientService {
             System.out.println();
         }
     }
-
-//    private void broadcast() {
-//        new ClientCommandBroadcact(chatService, session, scanner).execute();
-//    }
-
 }
