@@ -78,6 +78,7 @@ public class ClientService {
     public void run() {
         String cmd = "";
         while (!CMD_EXIT.equals(cmd)) {
+            System.out.print(session + ":> ");
             System.out.println("ENTER CMD: ");
             cmd = scanner.nextLine();
             final Command command = commands.get(cmd);
