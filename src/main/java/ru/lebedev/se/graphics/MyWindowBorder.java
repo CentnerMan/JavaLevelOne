@@ -3,14 +3,14 @@ package ru.lebedev.se.graphics;
 import javax.swing.*;
 import java.awt.*;
 
-public class MyWindow extends JFrame {
-    public MyWindow(){
-        setTitle("Test window");
+public class MyWindowBorder extends JFrame {
+    public MyWindowBorder() {
+        setTitle("Test Window BorderLayout");
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        setBounds(300,300,400,400);
+        setBounds(300, 300, 400, 400);
         JButton[] jbs = new JButton[5];
-        for(int i=0; i<5;i++){
-            jbs[i]=new JButton("#" + i);
+        for (int i = 0; i < jbs.length; i++) {
+            jbs[i] = new JButton("#" + i);
         }
         setLayout(new BorderLayout()); // выбор компоновщика элементов
         add(jbs[0], BorderLayout.EAST); // добавление кнопки на форму

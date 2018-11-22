@@ -3,11 +3,11 @@ package ru.lebedev.se.graphics;
 import javax.swing.*;
 import java.awt.*;
 
-public class MyWindowBox extends JFrame{
-    public MyWindowBox() {
-        setTitle("Test Window BoxLayout");
+public class MyWindowBorder2 extends JFrame{
+    public MyWindowBorder2() {
+        setTitle("Test Window BorderLayout2");
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        setBounds(700, 300, 400, 400);
+        setBounds(300, 300, 400, 400);
 
         JButton button = new JButton("Button 1 (PAGE_START)");
         add(button, BorderLayout.PAGE_START); // добавление кнопки на форму
