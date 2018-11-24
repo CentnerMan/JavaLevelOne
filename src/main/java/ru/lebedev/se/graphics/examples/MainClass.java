@@ -1,4 +1,4 @@
-package ru.lebedev.se.graphics;
+package ru.lebedev.se.graphics.examples;
 
 public class MainClass {
     public static void main(String[] args) {
@@ -8,5 +8,6 @@ public class MainClass {
 //        MyWindowFlow myWindowFlow = new MyWindowFlow();
 //        MyWindowGrid myWindowGrid = new MyWindowGrid();
         MyWindow myWindow = new MyWindow();
+        myWindow.setVisible(true);
     }
 }

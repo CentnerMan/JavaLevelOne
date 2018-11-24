@@ -1,4 +1,4 @@
-package ru.lebedev.se.graphics;
+package ru.lebedev.se.graphics.examples;
 
 import javax.swing.*;
 import java.awt.*;

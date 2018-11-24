@@ -1,4 +1,4 @@
-package ru.lebedev.se.graphics;
+package ru.lebedev.se.graphics.examples;
 
 import sun.java2d.loops.DrawLine;
 
@@ -23,6 +23,7 @@ public class MyWindow extends JFrame {
 //            }
 //        });
         setLayout(null);
+        setLocationRelativeTo(null); // выводим по центру
         // Button
         JButton button = new JButton("Button");
         button.setBounds(20, 20, 100, 50);
@@ -48,6 +49,6 @@ public class MyWindow extends JFrame {
             }
         });
         //------------------------------------------
-        setVisible(true);
+
     }
 }
